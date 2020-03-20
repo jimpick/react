@@ -2,9 +2,10 @@ const fs = require("fs").promises;
 const mkdirp = require("mkdirp");
 const rimraf = require("rimraf");
 
-const VERSION = "16.12.0";
+const VERSION = "16.13.1";
+const DASH = "-3";
 process.env.npm_package_dependencies_react = VERSION;
-const reactEcmascript = require("react-ecmascript");
+const reactEcmascript = require("@jimpick/react-ecmascript");
 
 rimraf.sync(`./staging/react/${VERSION}`);
 rimraf.sync(`./staging/react-dom/${VERSION}`);
@@ -60,12 +61,12 @@ reactEcmascript().then(async sources => {
   await fs.writeFile(
     `./staging/react/${VERSION}/package.json`,
     `{
-      "name": "@pika/react",
-      "version": "${VERSION}",
+      "name": "@jimpick/react",
+      "version": "${VERSION}${DASH}",
       "license": "MIT",
       "description": "An actively maintained ESM build of React, the JavaScript library for building user interfaces.",
-      "main": "source.production.js",
-      "module": "source.production.js",
+      "main": "source.development.js",
+      "module": "source.development.js",
       "homepage": "https://reactjs.org/",
       "bugs": {
         "url": "https://github.com/facebook/react/issues"
@@ -84,15 +85,12 @@ reactEcmascript().then(async sources => {
   await fs.writeFile(
     `./staging/react-dom/${VERSION}/package.json`,
     `{
-      "name": "@pika/react-dom",
+      "name": "@jimpick/react-dom",
       "description": "An actively maintained ESM build of React-DOM, a package for working with the DOM.",
-      "version": "${VERSION}",
+      "version": "${VERSION}${DASH}",
       "license": "MIT",
-      "main": "source.production.js",
-      "module": "source.production.js",
-      "peerDependencies": {
-        "@pika/react": "^16.0.0"
-      },
+      "main": "source.development.js",
+      "module": "source.development.js",
       "keywords": [
         "react"
       ],
