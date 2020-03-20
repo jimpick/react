@@ -2,8 +2,9 @@ const fs = require("fs").promises;
 const mkdirp = require("mkdirp");
 const rimraf = require("rimraf");
 
-const VERSION = "16.13.1";
-const DASH = "-3";
+const VERSION = "16.13.0";
+const DASH = "-0";
+const EXPERIMENTAL = "-experimental";
 process.env.npm_package_dependencies_react = VERSION;
 const reactEcmascript = require("@jimpick/react-ecmascript");
 
@@ -61,7 +62,7 @@ reactEcmascript().then(async sources => {
   await fs.writeFile(
     `./staging/react/${VERSION}/package.json`,
     `{
-      "name": "@jimpick/react",
+      "name": "@jimpick/react${EXPERIMENTAL}",
       "version": "${VERSION}${DASH}",
       "license": "MIT",
       "description": "An actively maintained ESM build of React, the JavaScript library for building user interfaces.",
@@ -85,7 +86,7 @@ reactEcmascript().then(async sources => {
   await fs.writeFile(
     `./staging/react-dom/${VERSION}/package.json`,
     `{
-      "name": "@jimpick/react-dom",
+      "name": "@jimpick/react-dom${EXPERIMENTAL}",
       "description": "An actively maintained ESM build of React-DOM, a package for working with the DOM.",
       "version": "${VERSION}${DASH}",
       "license": "MIT",
